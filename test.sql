@@ -23,7 +23,7 @@ VALUES
 select count(*) as payment_count
 from
 transactions as t
-where  (
+where (
 	select count(*)
 	from transactions
 	where 
@@ -31,6 +31,8 @@ where  (
 	between t.transaction_timestamp and t.transaction_timestamp + '00:10:00'
 	and 
 	credit_card_id = t.credit_card_id
+	and
+	amount = t.amount
 ) > 1
 
 
